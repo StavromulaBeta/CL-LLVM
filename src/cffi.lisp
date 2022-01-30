@@ -15,20 +15,20 @@
 
 (defun split-if (test seq &optional (dir :before))
   (remove-if #'(lambda (x) (equal x (subseq seq 0 0)))
-             (loop for start fixnum = 0 
+             (loop for start fixnum = 0
                 then (if (eq dir :before)
                          stop
                          (the fixnum (1+ (the fixnum stop))))
                 while (< start (length seq))
-                for stop = (position-if 
-                            test seq 
+                for stop = (position-if
+                            test seq
                             :start (if (eq dir :elide)
                                        start
                                        (the fixnum (1+ start))))
-                collect (subseq 
-                         seq start 
-                         (if (and stop (eq dir :after)) 
-                             (the fixnum (1+ (the fixnum stop))) 
+                collect (subseq
+                         seq start
+                         (if (and stop (eq dir :after))
+                             (the fixnum (1+ (the fixnum stop)))
                              stop))
                 while stop)))
 
@@ -83,19 +83,18 @@
 
 (define-foreign-library libllvm
   (:darwin (:or (:default "libLLVM")
-                (:default "libLLVM-3.6")
-                (:default "libLLVM-3.5")
-                (:default "libLLVM-3.1")
-                (:default "libLLVM-3.1svn")
+                (:default "libLLVM-13")
+                (:default "libLLVM-12")
+                (:default "libLLVM-11")
                 (:default "libLLVM-3.0")))
-  (:unix (:or "libLLVM.so" "libLLVM.so.1" "libLLVM-3.6.so"
-              "libLLVM-3.1.so" "libLLVM-3.1.so.1" "libLLVM-3.1svn.so"
-              "libLLVM-3.1svn.so.1" "libLLVM-3.0.so" "libLLVM-3.0.so.1"))
+  (:unix (:or "libLLVM.so" "libLLVM.so.1"
+              "libLLVM-13.so" "libLLVM-13.so.1"
+              "libLLVM-12.so" "libLLVM-12.so.1"
+              "libLLVM-11.so" "libLLVM-11.so.1"))
   (t (:or (:default "libLLVM")
-          (:default "libLLVM-3.6")
-          (:default "libLLVM-3.1")
-          (:default "libLLVM-3.1svn")
-          (:default "libLLVM-3.0"))))
+          (:default "libLLVM-13")
+          (:default "libLLVM-12")
+          (:default "libLLVM-11"))))
 
 (use-foreign-library libllvm)
 
