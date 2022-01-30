@@ -1,3 +1,5 @@
+**This is an attempt to update this library to work with LLVM 13. I'm not sure to what extent it functions**
+
 CL-LLVM provides Common Lisp bindings for [LLVM](http://llvm.org/). It takes the FFI approach, rather than attempting to output LLVM assembly or bitcode directly.
 
 **Note**: This library is available via [Quicklisp](https://quicklisp.org/).
