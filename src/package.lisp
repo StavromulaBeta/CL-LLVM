@@ -205,6 +205,7 @@
            #:execution-engine
            #:interpreter
            #:jit-compiler
+           #:make-execution-engine
            #:dispose-execution-engine
            #:run-static-constructors
            #:run-static-destructors
